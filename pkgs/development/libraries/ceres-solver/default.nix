@@ -4,6 +4,8 @@
 , cmake
 , gflags
 , glog
+, openblas
+, suitesparse
 , runTests ? false
 }:
 
@@ -20,7 +22,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ eigen glog ]
+  buildInputs = [ eigen glog openblas suitesparse ]
     ++ stdenv.lib.optional runTests gflags;
 
   # The Basel BUILD file conflicts with the cmake build directory on
