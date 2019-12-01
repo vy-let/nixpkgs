@@ -13800,6 +13800,8 @@ in
 
   poppler_utils = poppler.override { suffix = "utils"; utils = true; };
 
+  popsift = callPackage ../development/libraries/popsift { };
+
   popt = callPackage ../development/libraries/popt { };
 
   portaudio = callPackage ../development/libraries/portaudio {
