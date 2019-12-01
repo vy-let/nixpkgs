@@ -1183,7 +1183,7 @@ in
 
   blink = libsForQt5.callPackage ../applications/networking/instant-messengers/blink { };
 
-  blockbook = callPackage ../servers/blockbook { 
+  blockbook = callPackage ../servers/blockbook {
     buildGoPackage = buildGo113Package;
   };
 
@@ -13676,6 +13676,8 @@ in
   opencolorio = callPackage ../development/libraries/opencolorio { };
 
   ois = callPackage ../development/libraries/ois {};
+
+  opengv = callPackage ../development/libraries/opengv { };
 
   openh264 = callPackage ../development/libraries/openh264 { };
 
