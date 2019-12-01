@@ -1,0 +1,27 @@
+diff -u b/src/CMakeLists.txt b/src/CMakeLists.txt
+--- b/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -33,6 +33,8 @@
+   ${Matlab_LIBRARIES} # optional
+   ${MAGMA_LIBRARIES}
+   ${CUDA_LIBRARIES}
++  ${CUDA_CUBLAS_LIBRARIES}
++  ${CUDA_cusparse_LIBRARY}
+   ${Boost_LIBRARIES}
+   )
+ target_compile_definitions(uncertaintyTE
+@@ -52,10 +54,14 @@
+     PUBLIC
+     .
+     ${INCLUDE_DIRS}
++    ${CUDA_INCLUDE_DIRS}
+     ${GFLAGS_INCLUDE_DIR})
+ 
+ target_link_libraries(uncertainty
+   uncertaintyTE
++  ${CUDA_LIBRARIES}
++  ${CUDA_CUBLAS_LIBRARIES}
++  ${CUDA_cusparse_LIBRARY}
+   ${GFLAGS_LIBRARIES}
+   )
+ 

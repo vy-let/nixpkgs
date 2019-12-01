@@ -14602,6 +14602,8 @@ in
 
   umockdev = callPackage ../development/libraries/umockdev { };
 
+  uncertainty-te = callPackage ../development/libraries/uncertainty-te { };
+
   unconvert = callPackage ../development/tools/unconvert { };
 
   unibilium = callPackage ../development/libraries/unibilium { };
