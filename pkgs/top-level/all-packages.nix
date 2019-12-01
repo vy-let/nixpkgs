@@ -11550,6 +11550,8 @@ in
 
   geocode-glib = callPackage ../development/libraries/geocode-glib {};
 
+  geogram = callPackage ../development/libraries/geogram { };
+
   geoipWithDatabase = makeOverridable (callPackage ../development/libraries/geoip) {
     drvName = "geoip-tools";
     geoipDatabase = geolite-legacy;
