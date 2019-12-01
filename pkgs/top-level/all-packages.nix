@@ -11106,6 +11106,8 @@ in
 
   scmccid = callPackage ../development/libraries/scmccid { };
 
+  cctag = callPackage ../development/libraries/cctag { };
+
   ccrtp = callPackage ../development/libraries/ccrtp { };
 
   cctz = callPackage ../development/libraries/cctz { };
