@@ -21216,6 +21216,8 @@ in
 
   mrxvt = callPackage ../applications/misc/mrxvt { };
 
+  msync = callPackage ../applications/networking/msync { };
+
   mtpaint = callPackage ../applications/graphics/mtpaint { };
 
   mu-repo = python3Packages.callPackage ../applications/misc/mu-repo { };
