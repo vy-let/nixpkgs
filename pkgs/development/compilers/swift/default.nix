@@ -35,7 +35,7 @@
 }:
 
 let
-  version = "5.1.1";
+  version = "5.2.5";
 
   fetch = { repo, sha256, fetchSubmodules ? false }:
     fetchFromGitHub {
@@ -46,62 +46,83 @@ let
     };
 
   sources = {
-    llvm = fetch {
-      repo = "swift-llvm";
-      sha256 = "00ldd9dby6fl6nk3z17148fvb7g9x4jkn1afx26y51v8rwgm1i7f";
-    };
-    compilerrt = fetch {
-      repo = "swift-compiler-rt";
-      sha256 = "1431f74l0n2dxn728qp65nc6hivx88fax1wzfrnrv19y77br05wj";
-    };
-    clang = fetch {
-      repo = "swift-clang";
-      sha256 = "0n7k6nvzgqp6h6bfqcmna484w90db3zv4sh5rdh89wxyhdz6rk4v";
-    };
-    clangtools = fetch {
-      repo = "swift-clang-tools-extra";
-      sha256 = "0snp2rpd60z239pr7fxpkj332rkdjhg63adqvqdkjsbrxcqqcgqa";
+
+    # The following are replaced by llvm-project:
+    #
+    # llvm = fetch {
+    #   repo = "swift-llvm";
+    #   sha256 = "00ldd9dby6fl6nk3z17148fvb7g9x4jkn1afx26y51v8rwgm1i7f";
+    # };
+    # compilerrt = fetch {
+    #   repo = "swift-compiler-rt";
+    #   sha256 = "1431f74l0n2dxn728qp65nc6hivx88fax1wzfrnrv19y77br05wj";
+    # };
+    # clang = fetch {
+    #   repo = "swift-clang";
+    #   sha256 = "0n7k6nvzgqp6h6bfqcmna484w90db3zv4sh5rdh89wxyhdz6rk4v";
+    # };
+    # clangtools = fetch {
+    #   repo = "swift-clang-tools-extra";
+    #   sha256 = "0snp2rpd60z239pr7fxpkj332rkdjhg63adqvqdkjsbrxcqqcgqa";
+    # };
+    # lldb = fetch {
+    #   repo = "swift-lldb";
+    #   sha256 = "0j787475f0nlmvxqblkhn3yrvn9qhcb2jcijwijxwq95ar2jdygs";
+    # };
+    #
+    #
+
+    llvmProject = fetch {
+      repo = "llvm-project";
+      sha256 = "0v048qqjg48y9wg81qg6wcrl5v7ypj6077ykyw8l8saa33vk2wik";
     };
     indexstore = fetch {
       repo = "indexstore-db";
-      sha256 = "1gwkqkdmpd5hn7555dpdkys0z50yh00hjry2886h6rx7avh5p05n";
+      sha256 = "05lfbxcdx69km146j9xwzjp1as0jjgjhgamildlkvd7bp9zmixbm";
     };
     sourcekit = fetch {
       repo = "sourcekit-lsp";
-      sha256 = "0k84ssr1k7grbvpk81rr21ii8csnixn9dp0cga98h6i1gshn8ml4";
+      sha256 = "1m5mpmlrfmp1z77brk91x5gnhnv4phlmsk9vn350x4xwi4fcvli0";
     };
     cmark = fetch {
       repo = "swift-cmark";
-      sha256 = "079smm79hbwr06bvghd2sb86b8gpkprnzlyj9kh95jy38xhlhdnj";
-    };
-    lldb = fetch {
-      repo = "swift-lldb";
-      sha256 = "0j787475f0nlmvxqblkhn3yrvn9qhcb2jcijwijxwq95ar2jdygs";
+      sha256 = "004h09n0a6pkfg2h52mcal9cl6vbsq7gv0njr7nj9245h1gk5b49";
     };
     llbuild = fetch {
       repo = "swift-llbuild";
-      sha256 = "1n2s5isxyl6b6ya617gdzjbw68shbvd52vsfqc1256rk4g448v8b";
+      sha256 = "00jp3j48ik1ba1n037sl40g6a0xk3vd9akpfr3pn783y0alsn4h2";
     };
     pm = fetch {
       repo = "swift-package-manager";
-      sha256 = "1a49jmag5mpld9zr96g8a773334mrz1c4nyw38gf4p6sckf4jp29";
+      sha256 = "0nc6pqqpbxh6wg142v4sw619jbjzhml3nyhxbbgqzwgxjmycfl14";
     };
     xctest = fetch {
       repo = "swift-corelibs-xctest";
-      sha256 = "0rxy9sq7i0s0kxfkz0hvdp8zyb40h31f7g4m0kry36qk82gzzh89";
+      sha256 = "0xylkaxs7xh9ij204i40zglrwz6pw8jckdq9m1fr139bhssyg323";
     };
     foundation = fetch {
       repo = "swift-corelibs-foundation";
-      sha256 = "1iiiijsnys0r3hjcj1jlkn3yszzi7hwb2041cnm5z306nl9sybzp";
+      sha256 = "0dfmhisw81i1957zl1vb62828aany49rsgs9720wsy3dh11cpya5";
     };
     libdispatch = fetch {
       repo = "swift-corelibs-libdispatch";
-      sha256 = "0laqsizsikyjhrzn0rghvxd8afg4yav7cbghvnf7ywk9wc6kpkmn";
+      sha256 = "0v867x29bl97ziq9ri9bf0jns1c8v52n1cx2fdhl6n87vfsqvjkh";
       fetchSubmodules = true;
+    };
+    syntax = fetch {
+      repo = "swift-syntax";
+      sha256 = "0mzcsjvs669y1d7kmwif9wvx9r6apskwfi4hhzx79yzwilvsxbpf";
+    };
+    format = fetchFromGitHub {
+      owner = "apple";
+      repo = "swift-format";
+      rev = "0.50200.1";
+      sha256 = "0khlrh3aq1rxk73yzv95jsmwi9w6hdnfm4cf500r72ih295p0kky";
+      name = "swift-format-0.50200.1-src";
     };
     swift = fetch {
       repo = "swift";
-      sha256 = "0m4r1gzrnn0s1c7haqq9dlmvpqxbgbkbdfmq6qaph869wcmvdkvy";
+      sha256 = "0klkxh8md6mvp7fk6d97hxaw404sr1q9aijlxdg9qm1l0nfm8wbn";
     };
   };
 
@@ -164,28 +185,23 @@ stdenv.mkDerivation {
     cd src
     export SWIFT_SOURCE_ROOT=$PWD
 
-    cp -r ${sources.llvm} llvm
-    cp -r ${sources.compilerrt} compiler-rt
-    cp -r ${sources.clang} clang
-    cp -r ${sources.clangtools} clang-tools-extra
+    cp -r ${sources.llvmProject} llvm-project
     cp -r ${sources.indexstore} indexstore-db
     cp -r ${sources.sourcekit} sourcekit-lsp
     cp -r ${sources.cmark} cmark
-    cp -r ${sources.lldb} lldb
     cp -r ${sources.llbuild} llbuild
     cp -r ${sources.pm} swiftpm
     cp -r ${sources.xctest} swift-corelibs-xctest
     cp -r ${sources.foundation} swift-corelibs-foundation
     cp -r ${sources.libdispatch} swift-corelibs-libdispatch
+    cp -r ${sources.syntax} swift-syntax
+    cp -r ${sources.format} swift-format
     cp -r ${sources.swift} swift
 
     chmod -R u+w .
   '';
 
   patchPhase = ''
-    # Glibc 2.31 fix
-    patch -p1 -i ${./patches/swift-llvm.patch}
-
     # Just patch all the things for now, we can focus this later
     patchShebangs $SWIFT_SOURCE_ROOT
 
@@ -201,7 +217,6 @@ stdenv.mkDerivation {
       --replace '/usr/include' "${stdenv.cc.libc.dev}/include"
     substituteInPlace swift/utils/build-script-impl \
       --replace '/usr/include/c++' "${gccForLibs}/include/c++"
-    patch -p1 -d swift -i ${./patches/glibc-arch-headers.patch}
     patch -p1 -d swift -i ${./patches/0001-build-presets-linux-don-t-require-using-Ninja.patch}
     patch -p1 -d swift -i ${./patches/0002-build-presets-linux-allow-custom-install-prefix.patch}
     patch -p1 -d swift -i ${./patches/0003-build-presets-linux-don-t-build-extra-libs.patch}
@@ -217,26 +232,17 @@ stdenv.mkDerivation {
       \
       -e 's/^swift-install-components=autolink.*$/\0;editor-integration/'
 
-    substituteInPlace clang/lib/Driver/ToolChains/Linux.cpp \
+    substituteInPlace llvm-project/clang/lib/Driver/ToolChains/Linux.cpp \
       --replace 'SysRoot + "/lib' '"${glibc}/lib" "'
-    substituteInPlace clang/lib/Driver/ToolChains/Linux.cpp \
+    substituteInPlace llvm-project/clang/lib/Driver/ToolChains/Linux.cpp \
       --replace 'SysRoot + "/usr/lib' '"${glibc}/lib" "'
-    patch -p1 -d clang -i ${./patches/llvm-toolchain-dir.patch}
-    patch -p1 -d clang -i ${./purity.patch}
+    patch -p1 -d llvm-project/clang -i ${./patches/llvm-toolchain-dir.patch}
+    patch -p1 -d llvm-project/clang -i ${./purity.patch}
 
     # Workaround hardcoded dep on "libcurses" (vs "libncurses"):
     sed -i 's/curses/ncurses/' llbuild/*/*/CMakeLists.txt
     # uuid.h is not part of glibc, but of libuuid
     sed -i 's|''${GLIBC_INCLUDE_PATH}/uuid/uuid.h|${libuuid.dev}/include/uuid/uuid.h|' swift/stdlib/public/Platform/glibc.modulemap.gyb
-
-    # Compatibility with glibc 2.30
-    # Adapted from https://github.com/apple/swift-package-manager/pull/2408
-    patch -p1 -d swiftpm -i ${./patches/swift-package-manager-glibc-2.30.patch}
-    # https://github.com/apple/swift/pull/27288
-    patch -p1 -d swift -i ${fetchpatch {
-      url = "https://github.com/apple/swift/commit/f968f4282d53f487b29cf456415df46f9adf8748.patch";
-      sha256 = "1aa7l66wlgip63i4r0zvi9072392bnj03s4cn12p706hbpq0k37c";
-    }}
 
     PREFIX=''${out/#\/}
     substituteInPlace indexstore-db/Utilities/build-script-helper.py \
