@@ -213,7 +213,7 @@ stdenv.mkDerivation {
       -e 's|/bin/cp|${coreutils}/bin/cp|g' \
       -e 's|/usr/bin/file|${file}/bin/file|g'
 
-    substituteInPlace swift/stdlib/public/Platform/CMakeLists.txt \
+    substituteInPlace swift/cmake/modules/SwiftConfigureSDK.cmake \
       --replace '/usr/include' "${stdenv.cc.libc.dev}/include"
     substituteInPlace swift/utils/build-script-impl \
       --replace '/usr/include/c++' "${gccForLibs}/include/c++"
@@ -239,6 +239,8 @@ stdenv.mkDerivation {
     patch -p1 -d llvm-project/clang -i ${./patches/llvm-toolchain-dir.patch}
     patch -p1 -d llvm-project/clang -i ${./purity.patch}
 
+    patch -p1 -d swift-corelibs-libdispatch -i ${./patches/0005-unused-return-value.patch}
+
     # Workaround hardcoded dep on "libcurses" (vs "libncurses"):
     sed -i 's/curses/ncurses/' llbuild/*/*/CMakeLists.txt
     # uuid.h is not part of glibc, but of libuuid
@@ -246,6 +248,12 @@ stdenv.mkDerivation {
 
     PREFIX=''${out/#\/}
     substituteInPlace indexstore-db/Utilities/build-script-helper.py \
+      --replace usr "$PREFIX"
+    substituteInPlace swift/utils/swift_build_support/swift_build_support/products/swiftpm.py \
+      --replace usr "$PREFIX"
+    substituteInPlace llvm-project/lldb/scripts/Xcode/build-swift-repl.py \
+      --replace usr "$PREFIX"
+    substituteInPlace swift-syntax/update-toolchain.py \
       --replace usr "$PREFIX"
     substituteInPlace sourcekit-lsp/Utilities/build-script-helper.py \
       --replace usr "$PREFIX"
