@@ -251,6 +251,8 @@ stdenv.mkDerivation {
       --replace usr "$PREFIX"
     substituteInPlace swift/utils/swift_build_support/swift_build_support/products/swiftpm.py \
       --replace usr "$PREFIX"
+    substituteInPlace swift/benchmark/scripts/build_script_helper.py \
+      --replace usr "$PREFIX"
     substituteInPlace llvm-project/lldb/scripts/Xcode/build-swift-repl.py \
       --replace usr "$PREFIX"
     substituteInPlace swift-syntax/update-toolchain.py \
